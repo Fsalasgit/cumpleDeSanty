@@ -35,10 +35,19 @@ export default function PlayersPage() {
   };
 
   const reset = () => {
+    const password = prompt("Introduce la contraseña para resetear:");
+    if (password !== "FelizCumpleSanti") {
+      alert("Contraseña incorrecta. No se reseteó nada.");
+      return;
+    }
+
     if (!confirm("¿Resetear a valores iniciales?")) return;
+
     setPlayers(initialPlayers);
     localStorage.removeItem("rp_players");
+    alert("Reseteado con éxito ✅");
   };
+
 
   const addPlayer = (name, avatar) => {
     const newPlayer = { id: Date.now(), name: name.trim(), robux: 150, avatar };

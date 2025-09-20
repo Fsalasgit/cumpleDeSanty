@@ -11,6 +11,9 @@ export default function NavBar({ tab, setTab }) {
         <button className={tab === "story" ? "tab active" : "tab"} onClick={() => setTab("story")}>
           Generador de historias
         </button>
+        <button className={tab === "trivia" ? "tab active" : "tab"} onClick={() => setTab("trivia")}>
+          Trivia
+        </button>
       </div>
     </nav>
   );

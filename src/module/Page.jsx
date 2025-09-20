@@ -2,6 +2,7 @@ import { useState } from "react";
 import NavBar from "./nav/NavBar";
 import PlayersPage from "./players/PlayersPage";
 import StoryPage from "./story/StoryPage";
+import TriviaPage from "./trivia/TriviaPage";
 
 export default function Page() {
   const [tab, setTab] = useState("players");
@@ -13,6 +14,7 @@ export default function Page() {
       <main className="main-content">
         {tab === "players" && <PlayersPage players={players} setPlayers={setPlayers} />}
         {tab === "story" && <StoryPage players={players} />}
+        {tab === "trivia" && <TriviaPage />}
       </main>
     </div>
   );

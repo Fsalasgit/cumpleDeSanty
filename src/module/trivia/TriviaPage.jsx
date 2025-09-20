@@ -1,48 +1,7 @@
 import { useState, useEffect } from "react";
 import TriviaControls from "./TriviaControls";
 import TriviaQuestion from "./TriviaQuestion";
-
-const triviaData = {
-  matematica: {
-    facil: [
-      {
-        question: "¿Cuánto es 5 + 3?",
-        options: ["6", "7", "8", "9"],
-        answer: "8",
-        reward: 50,
-      },
-    ],
-    intermedio: [
-      {
-        question: "¿Cuál es la raíz cuadrada de 81?",
-        options: ["7", "8", "9", "10"],
-        answer: "9",
-        reward: 100,
-      },
-    ],
-    dificil: [
-      {
-        question: "Si 2x + 5 = 15, ¿cuánto vale x?",
-        options: ["3", "5", "10", "15"],
-        answer: "5",
-        reward: 200,
-      },
-    ],
-  },
-  lengua: {
-    facil: [
-      {
-        question: "¿Cuál es un sinónimo de 'alegre'?",
-        options: ["triste", "contento", "cansado", "enojado"],
-        answer: "contento",
-        reward: 50,
-      },
-    ],
-    intermedio: [],
-    dificil: [],
-  },
-  // idem ciencias naturales y sociales
-};
+import { triviaData } from "../../trivia";
 
 export default function TriviaPage() {
   const [players, setPlayers] = useState([]);
@@ -50,7 +9,8 @@ export default function TriviaPage() {
   const [category, setCategory] = useState("");
   const [level, setLevel] = useState("");
   const [question, setQuestion] = useState(null);
-  const [answeredLevels, setAnsweredLevels] = useState({}); // { playerId: { matematica: ["facil"] } }
+  const [answeredLevels, setAnsweredLevels] = useState({}); 
+  // { playerId: { matematica: ["facil", "intermedio"] } }
 
   useEffect(() => {
     const savedPlayers = JSON.parse(localStorage.getItem("rp_players") || "[]");
@@ -75,8 +35,9 @@ export default function TriviaPage() {
       return;
     }
 
-    // Tomamos la primera (o random si quieres)
-    setQuestion(qList[0]);
+    // 👉 Tomamos una pregunta random
+    const randomIndex = Math.floor(Math.random() * qList.length);
+    setQuestion(qList[randomIndex]);
   };
 
   const handleAnswer = (option) => {
@@ -97,7 +58,7 @@ export default function TriviaPage() {
       alert("❌ Incorrecto.");
     }
 
-    // Marcar nivel como jugado
+    // 👉 Marcar nivel como jugado
     setAnsweredLevels((prev) => {
       const updated = { ...prev };
       if (!updated[selectedPlayer.id]) updated[selectedPlayer.id] = {};
@@ -107,7 +68,7 @@ export default function TriviaPage() {
       return updated;
     });
 
-    setQuestion(null);
+    setQuestion(null); // limpiar después de responder
   };
 
   return (

@@ -14,6 +14,9 @@ export default function NavBar({ tab, setTab }) {
         <button className={tab === "trivia" ? "tab active" : "tab"} onClick={() => setTab("trivia")}>
           Trivia
         </button>
+        <button className={tab === "robloxtizate" ? "tab active" : "tab"} onClick={() => setTab("robloxtizate")}>
+          Robloxtizate
+        </button>
       </div>
     </nav>
   );

@@ -3,6 +3,7 @@ import NavBar from "./nav/NavBar";
 import PlayersPage from "./players/PlayersPage";
 import StoryPage from "./story/StoryPage";
 import TriviaPage from "./trivia/TriviaPage";
+import RobloxAvatarUploader from "./robloxtizate/RobloxAvatarUploader.jsx";
 
 export default function Page() {
   const [tab, setTab] = useState("players");
@@ -15,6 +16,7 @@ export default function Page() {
         {tab === "players" && <PlayersPage players={players} setPlayers={setPlayers} />}
         {tab === "story" && <StoryPage players={players} />}
         {tab === "trivia" && <TriviaPage />}
+        {tab === "robloxtizate" && <RobloxAvatarUploader />}
       </main>
     </div>
   );
